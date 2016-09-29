@@ -441,7 +441,7 @@ public interface RoutingContext {
   @CacheReturn
   @Deprecated
   default Locale preferredLocale() {
-    return preferredLanguage();
+    return (Locale) preferredLanguage();
   }
   
   /**

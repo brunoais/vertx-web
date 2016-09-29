@@ -6,7 +6,7 @@ import io.vertx.codegen.annotations.Nullable;
 import io.vertx.codegen.annotations.VertxGen;
 
 @VertxGen
-public interface LanguageHeader extends ParsedHeaderValue, Locale{
+public interface LanguageHeader extends ParsedHeaderValue{
   
   /**
    * The tag of the language as specified by 

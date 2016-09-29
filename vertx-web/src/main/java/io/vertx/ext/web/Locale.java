@@ -30,7 +30,8 @@ import io.vertx.ext.web.impl.ParsableLanguageValue;
  */
 @VertxGen
 @Deprecated
-public interface Locale {
+// Extends LanguageHeader and not the other way around due to vertx3-gen limitations
+public interface Locale extends LanguageHeader{
 
   static Locale create() {
     final java.util.Locale locale = java.util.Locale.getDefault();
