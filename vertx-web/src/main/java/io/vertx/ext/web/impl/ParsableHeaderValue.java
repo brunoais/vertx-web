@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import io.vertx.codegen.annotations.VertxGen;
 import io.vertx.ext.web.ParsedHeaderValue;
@@ -90,7 +91,7 @@ public class ParsableHeaderValue implements ParsedHeaderValue {
   }
   
   @Override
-  public ParsedHeaderValue findMatchedBy(Iterable<ParsedHeaderValue> matchTries) {
+  public ParsedHeaderValue findMatchedBy(Set<ParsedHeaderValue> matchTries) {
     
     for (ParsedHeaderValue matchTry : matchTries) {
       if(isMatchedBy((ParsableHeaderValue) matchTry)){

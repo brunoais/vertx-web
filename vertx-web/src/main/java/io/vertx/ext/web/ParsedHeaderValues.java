@@ -2,6 +2,7 @@ package io.vertx.ext.web;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import io.vertx.codegen.annotations.Nullable;
 import io.vertx.codegen.annotations.VertxGen;
@@ -37,5 +38,5 @@ public interface ParsedHeaderValues {
    *    <T extends ParsedHeaderValue> T findBestUserAcceptedIn(List<T> accepted, Iterable<T> in);
    */
   @Nullable
-  ParsedHeaderValue findBestUserAcceptedIn(List<ParsedHeaderValue> accepted, Iterable<ParsedHeaderValue> in);
+  ParsedHeaderValue findBestUserAcceptedIn(List<ParsedHeaderValue> accepted, Set<ParsedHeaderValue> in);
 }

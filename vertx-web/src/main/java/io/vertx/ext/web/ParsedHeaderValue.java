@@ -81,7 +81,7 @@ public interface ParsedHeaderValue {
    * @note Effective declaration: 
    *    <T extends ParsedHeaderValue> T findMatchedBy(Iterable<T> matchTries);
    */
-  ParsedHeaderValue findMatchedBy(Iterable<ParsedHeaderValue> matchTries);
+  ParsedHeaderValue findMatchedBy(Set<ParsedHeaderValue> matchTries);
   
   /**
    * An integer that represents the absolute order position of this header
