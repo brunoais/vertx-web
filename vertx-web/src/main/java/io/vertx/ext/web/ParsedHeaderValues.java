@@ -38,5 +38,5 @@ public interface ParsedHeaderValues {
    *    <T extends ParsedHeaderValue> T findBestUserAcceptedIn(List<T> accepted, Iterable<T> in);
    */
   @Nullable
-  ParsedHeaderValue findBestUserAcceptedIn(List<ParsedHeaderValue> accepted, Set<ParsedHeaderValue> in);
+  ParsedHeaderValue findBestUserAcceptedIn(List<ParsedHeaderValue> accepted, Set<ParsedHeaderValue> inSet);
 }
