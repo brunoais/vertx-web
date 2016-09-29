@@ -48,13 +48,13 @@ public class ParsableHeaderValuesContainer implements ParsedHeaderValues {
   }
   
   @Override
-  public <T extends ParsedHeaderValue> Optional<T> findBestUserAcceptedIn(List<T> userAccepted, Iterable<T> in) {
-    for (T acceptableType: userAccepted) {
-      Optional<T> acceptedType = acceptableType.findMatchedBy(in);
-      if(acceptedType.isPresent()){
+  public ParsedHeaderValue findBestUserAcceptedIn(List<ParsedHeaderValue> userAccepted, Iterable<ParsedHeaderValue> in) {
+    for (ParsedHeaderValue acceptableType: userAccepted) {
+      ParsedHeaderValue acceptedType = acceptableType.findMatchedBy(in);
+      if(acceptedType != null){
         return acceptedType;
       }
     }
-    return Optional.empty();
+    return null;
   }
 }

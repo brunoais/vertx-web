@@ -22,6 +22,7 @@ import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.MIMEHeader;
+import io.vertx.ext.web.ParsedHeaderValue;
 import io.vertx.ext.web.Route;
 import io.vertx.ext.web.RoutingContext;
 

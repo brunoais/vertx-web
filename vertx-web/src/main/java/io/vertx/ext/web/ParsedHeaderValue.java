@@ -78,8 +78,10 @@ public interface ParsedHeaderValue {
    * 
    * @param matchTries A list of parsed headers to match from this header value
    * @return Optional potentially with the first matched header
+   * @note Effective declaration: 
+   *    <T extends ParsedHeaderValue> T findMatchedBy(Iterable<T> matchTries);
    */
-  <T extends ParsedHeaderValue> Optional<T> findMatchedBy(Iterable<T> matchTries);
+  ParsedHeaderValue findMatchedBy(Iterable<ParsedHeaderValue> matchTries);
   
   /**
    * An integer that represents the absolute order position of this header

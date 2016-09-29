@@ -90,14 +90,14 @@ public class ParsableHeaderValue implements ParsedHeaderValue {
   }
   
   @Override
-  public <T extends ParsedHeaderValue> Optional<T> findMatchedBy(Iterable<T> matchTries) {
+  public ParsedHeaderValue findMatchedBy(Iterable<ParsedHeaderValue> matchTries) {
     
-    for (T matchTry : matchTries) {
+    for (ParsedHeaderValue matchTry : matchTries) {
       if(isMatchedBy((ParsableHeaderValue) matchTry)){
-        return Optional.of(matchTry);
+        return matchTry;
       }
     }
-    return Optional.empty();
+    return null;
   }
   
   private void ensureParameterIsHashMap() {
