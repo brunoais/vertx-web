@@ -70,7 +70,7 @@ public interface ParsedHeaderValue {
    * @param matchTry The header to be matched from
    * @return true if this header represents a subset of matchTry, otherwise, false
    */
-  boolean isMatchedBy(ParsableHeaderValue matchTry);
+  boolean isMatchedBy(ParsedHeaderValue matchTry);
   
   /**
    * Finds the first ParsedHeaderValue in the list that matches with this header value.

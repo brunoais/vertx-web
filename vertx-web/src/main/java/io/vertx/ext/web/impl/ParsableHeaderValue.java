@@ -64,7 +64,8 @@ public class ParsableHeaderValue implements ParsedHeaderValue {
     return Collections.unmodifiableMap(parameter);
   }
   
-  public final boolean isMatchedBy(ParsableHeaderValue matchTry){
+  public final boolean isMatchedBy(ParsedHeaderValue matchTryIn){
+    ParsableHeaderValue matchTry = (ParsableHeaderValue) matchTryIn;
     return this.headerContent.equals(matchTry.headerContent) || isMatchedBy2(matchTry);
   }
   
