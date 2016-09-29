@@ -222,13 +222,14 @@ public class RouteImpl implements Route {
   }
 
   synchronized void handleFailure(RoutingContext context) {
+    System.out.println(context);
     if (failureHandler != null) {
       failureHandler.handle(context);
     }
   }
 
   synchronized boolean matches(RoutingContext context, String mountPoint, boolean failure) {
-
+System.out.println(context);
     if (failure && failureHandler == null || !failure && contextHandler == null) {
       return false;
     }

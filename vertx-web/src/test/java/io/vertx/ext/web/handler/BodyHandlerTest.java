@@ -342,7 +342,7 @@ public class BodyHandlerTest extends WebTestBase {
   @Test
   public void testMultiFileUpload() throws Exception {
 
-    int uploads = 1000;
+    int uploads = 100;
 
     router.route().handler(rc -> {
       assertEquals(uploads, rc.fileUploads().size());

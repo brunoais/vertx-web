@@ -14,24 +14,22 @@
  * under the License.
  */
 
-/** @module vertx-web-js/locale */
+/** @module vertx-web-js/language_header */
 var utils = require('vertx-js/util/utils');
 var ParsedHeaderValue = require('vertx-web-js/parsed_header_value');
-var LanguageHeader = require('vertx-web-js/language_header');
 
 var io = Packages.io;
 var JsonObject = io.vertx.core.json.JsonObject;
-var JLocale = io.vertx.ext.web.Locale;
+var JLanguageHeader = io.vertx.ext.web.LanguageHeader;
 
 /**
-
  @class
 */
-var Locale = function(j_val) {
+var LanguageHeader = function(j_val) {
 
-  var j_locale = j_val;
+  var j_languageHeader = j_val;
   var that = this;
-  LanguageHeader.call(this, j_val);
+  ParsedHeaderValue.call(this, j_val);
 
   /**
    Contains the raw value that was received from the user agent 
@@ -43,7 +41,7 @@ var Locale = function(j_val) {
   this.rawValue = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["rawValue()"]();
+      return j_languageHeader["rawValue()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -58,7 +56,7 @@ var Locale = function(j_val) {
   this.value = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["value()"]();
+      return j_languageHeader["value()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -74,7 +72,7 @@ var Locale = function(j_val) {
   this.weight = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["weight()"]();
+      return j_languageHeader["weight()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -94,7 +92,7 @@ var Locale = function(j_val) {
   this.getParameter = function(key) {
     var __args = arguments;
     if (__args.length === 1 && typeof __args[0] === 'string') {
-      return j_locale["getParameter(java.lang.String)"](key);
+      return j_languageHeader["getParameter(java.lang.String)"](key);
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -109,7 +107,7 @@ var Locale = function(j_val) {
   this.getParameters = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return utils.convReturnMap(j_locale["getParameters()"]());
+      return utils.convReturnMap(j_languageHeader["getParameters()"]());
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -123,7 +121,7 @@ var Locale = function(j_val) {
   this.isPermitted = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["isPermitted()"]();
+      return j_languageHeader["isPermitted()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -137,7 +135,7 @@ var Locale = function(j_val) {
   this.isMatchedBy = function(matchTry) {
     var __args = arguments;
     if (__args.length === 1 && typeof __args[0] === 'object' && __args[0]._jdel) {
-      return j_locale["isMatchedBy(io.vertx.ext.web.ParsedHeaderValue)"](matchTry._jdel);
+      return j_languageHeader["isMatchedBy(io.vertx.ext.web.ParsedHeaderValue)"](matchTry._jdel);
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -152,7 +150,7 @@ var Locale = function(j_val) {
   this.findMatchedBy = function(matchTries) {
     var __args = arguments;
     if (__args.length === 1 && typeof __args[0] === 'object' && __args[0] instanceof Array) {
-      return utils.convReturnVertxGen(j_locale["findMatchedBy(java.util.Set)"](utils.convParamSetVertxGen(matchTries)), ParsedHeaderValue);
+      return utils.convReturnVertxGen(j_languageHeader["findMatchedBy(java.util.Set)"](utils.convParamSetVertxGen(matchTries)), ParsedHeaderValue);
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -166,7 +164,7 @@ var Locale = function(j_val) {
   this.weightedOrder = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["weightedOrder()"]();
+      return j_languageHeader["weightedOrder()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -182,7 +180,7 @@ var Locale = function(j_val) {
   this.tag = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["tag()"]();
+      return j_languageHeader["tag()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -197,9 +195,9 @@ var Locale = function(j_val) {
   this.subtag = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["subtag()"]();
+      return j_languageHeader["subtag()"]();
     }  else if (__args.length === 1 && typeof __args[0] ==='number') {
-      return j_locale["subtag(int)"](__args[0]);
+      return j_languageHeader["subtag(int)"](__args[0]);
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
@@ -213,78 +211,15 @@ var Locale = function(j_val) {
   this.subtagCount = function() {
     var __args = arguments;
     if (__args.length === 0) {
-      return j_locale["subtagCount()"]();
-    } else throw new TypeError('function invoked with invalid arguments');
-  };
-
-  /**
-   Returns the language as reported by the HTTP client.
-
-   @public
-
-   @return {string} language
-   */
-  this.language = function() {
-    var __args = arguments;
-    if (__args.length === 0) {
-      return j_locale["language()"]();
-    } else throw new TypeError('function invoked with invalid arguments');
-  };
-
-  /**
-   Returns the country as reported by the HTTP client.
-
-   @public
-
-   @return {string} variant
-   */
-  this.country = function() {
-    var __args = arguments;
-    if (__args.length === 0) {
-      return j_locale["country()"]();
-    } else throw new TypeError('function invoked with invalid arguments');
-  };
-
-  /**
-   Returns the variant as reported by the HTTP client.
-
-   @public
-
-   @return {string} variant
-   */
-  this.variant = function() {
-    var __args = arguments;
-    if (__args.length === 0) {
-      return j_locale["variant()"]();
+      return j_languageHeader["subtagCount()"]();
     } else throw new TypeError('function invoked with invalid arguments');
   };
 
   // A reference to the underlying Java delegate
   // NOTE! This is an internal API and must not be used in user code.
   // If you rely on this property your code is likely to break if we change it / remove it without warning.
-  this._jdel = j_locale;
-};
-
-/**
-
- @memberof module:vertx-web-js/locale
- @param language {string} 
- @param country {string} 
- @param variant {string} 
- @return {Locale}
- */
-Locale.create = function() {
-  var __args = arguments;
-  if (__args.length === 0) {
-    return utils.convReturnVertxGen(JLocale["create()"](), Locale);
-  }else if (__args.length === 1 && typeof __args[0] === 'string') {
-    return utils.convReturnVertxGen(JLocale["create(java.lang.String)"](__args[0]), Locale);
-  }else if (__args.length === 2 && typeof __args[0] === 'string' && typeof __args[1] === 'string') {
-    return utils.convReturnVertxGen(JLocale["create(java.lang.String,java.lang.String)"](__args[0], __args[1]), Locale);
-  }else if (__args.length === 3 && typeof __args[0] === 'string' && typeof __args[1] === 'string' && typeof __args[2] === 'string') {
-    return utils.convReturnVertxGen(JLocale["create(java.lang.String,java.lang.String,java.lang.String)"](__args[0], __args[1], __args[2]), Locale);
-  } else throw new TypeError('function invoked with invalid arguments');
+  this._jdel = j_languageHeader;
 };
 
 // We export the Constructor function
-module.exports = Locale;
+module.exports = LanguageHeader;

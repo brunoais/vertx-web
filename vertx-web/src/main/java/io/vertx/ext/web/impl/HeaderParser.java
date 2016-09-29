@@ -153,4 +153,51 @@ public class HeaderParser {
     // Do not accept more than 9 subtags. Even more than 5 is a lot already!
     return HYPHEN_SPLITTER.split(value.trim(), 9);
   }
+  
+  private static final Pattern PARAMETER_FINDER_NON_POSSESSIVE =
+      Pattern.compile("\\s*;\\s*(?<key>[a-zA-Z0-9]++)\\s*" +
+          "(?:=\\s*(?:(?<value1>[a-zA-Z0-9.@#\\-%_]+)|\"(?<value2>(?:[^\\\\\"]*(?:\\\\.)?)*)\"))?");
+  
+  public static void main(String[] args) {
+    String testCapture1 = "big/bad;wolf;q=0.2";
+    // alternate between '\' and '"' but ends with '\'
+    String testCapture2 = ";a=\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\\"\\";
+    for (int i = 0; i < 50; i++) {
+      Matcher got = PARAMETER_FINDER.matcher(testCapture2);
+      got.find();
+      got.find();
+      got = PARAMETER_FINDER_NON_POSSESSIVE.matcher(testCapture2);
+      got.find();
+      got.find();
+    }
+    System.out.println("normal");
+    System.out.println("POSSESSIVE");
+    for (int i = 0; i < 10; i++) {
+      test(testCapture1, PARAMETER_FINDER);
+    }
+    System.out.println("NON_POSSESSIVE");
+    for (int i = 0; i < 10; i++) {
+      test(testCapture1, PARAMETER_FINDER_NON_POSSESSIVE);
+    }
+    System.out.println("Worst");
+    System.out.println("POSSESSIVE");
+    for (int i = 0; i < 10; i++) {
+      test(testCapture2, PARAMETER_FINDER);
+    }
+    System.out.println("NON_POSSESSIVE");
+    for (int i = 0; i < 10; i++) {
+      test(testCapture2, PARAMETER_FINDER_NON_POSSESSIVE);
+    }
+  }
+  
+  private static void test(String testCapture, Pattern type){
+    long start1 = System.nanoTime();
+    Matcher have = type.matcher(testCapture);
+    have.find();
+    have.find();
+    have.find();
+    long end = System.nanoTime();
+    
+    System.out.println((end - start1));
+  }
 }

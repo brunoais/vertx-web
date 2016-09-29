@@ -66,6 +66,9 @@ public class ParsableHeaderValue implements ParsedHeaderValue {
   
   public final boolean isMatchedBy(ParsedHeaderValue matchTryIn){
     ParsableHeaderValue matchTry = (ParsableHeaderValue) matchTryIn;
+    System.out.println(parameter);
+    System.out.println(matchTry.parameter);
+    System.out.println(this.headerContent.equals(matchTry.headerContent));
     return this.headerContent.equals(matchTry.headerContent) || isMatchedBy2(matchTry);
   }
   
@@ -131,6 +134,7 @@ public class ParsableHeaderValue implements ParsedHeaderValue {
     this.value = value;
   }
   private void addParameter(String key, String value) {
+    System.out.println(key);
     ensureParameterIsHashMap();
     if(value == null){
       value = EMPTY;

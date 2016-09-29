@@ -42,8 +42,8 @@ public class WebTestBase extends VertxTestBase {
   public void setUp() throws Exception {
     super.setUp();
     router = Router.router(vertx);
-    server = vertx.createHttpServer(new HttpServerOptions().setPort(8080).setHost("localhost"));
-    client = vertx.createHttpClient(new HttpClientOptions().setDefaultPort(8080));
+    server = vertx.createHttpServer(new HttpServerOptions().setPort(9080).setHost("localhost"));
+    client = vertx.createHttpClient(new HttpClientOptions().setDefaultPort(9080));
     CountDownLatch latch = new CountDownLatch(1);
     server.requestHandler(router::accept).listen(onSuccess(res -> {
       latch.countDown();
@@ -108,7 +108,7 @@ public class WebTestBase extends VertxTestBase {
   protected void testRequestBuffer(HttpMethod method, String path, Consumer<HttpClientRequest> requestAction, Consumer<HttpClientResponse> responseAction,
                                    int statusCode, String statusMessage,
                                    Buffer responseBodyBuffer) throws Exception {
-    testRequestBuffer(client, method, 8080, path, requestAction, responseAction, statusCode, statusMessage, responseBodyBuffer);
+    testRequestBuffer(client, method, 9080, path, requestAction, responseAction, statusCode, statusMessage, responseBodyBuffer);
   }
 
   protected void testRequestBuffer(HttpClient client, HttpMethod method, int port, String path, Consumer<HttpClientRequest> requestAction, Consumer<HttpClientResponse> responseAction,
