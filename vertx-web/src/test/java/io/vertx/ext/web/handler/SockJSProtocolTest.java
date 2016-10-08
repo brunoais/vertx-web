@@ -54,7 +54,7 @@ public class SockJSProtocolTest extends WebTestBase {
       File dir = new File("src/test/sockjs-protocol");
       p = Runtime
           .getRuntime()
-          .exec("python sockjs-protocol-0.3.3.py", new String[]{"SOCKJS_URL=http://localhost:8080"}, dir);
+          .exec("python sockjs-protocol-0.3.3.py", new String[]{"SOCKJS_URL=http://localhost:" + server.actualPort()}, dir);
 
       try (BufferedReader input = new BufferedReader(new InputStreamReader(p.getErrorStream()))) {
         String line;

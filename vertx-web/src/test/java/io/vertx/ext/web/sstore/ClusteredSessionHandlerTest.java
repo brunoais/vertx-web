@@ -65,7 +65,7 @@ public class ClusteredSessionHandlerTest extends SessionHandlerTestBase {
     router1.route().handler(CookieHandler.create());
     SessionStore store1 = ClusteredSessionStore.create(vertices[0]);
     router1.route().handler(SessionHandler.create(store1));
-    HttpServer server1 = vertices[0].createHttpServer(new HttpServerOptions().setPort(8081).setHost("localhost"));
+    HttpServer server1 = vertices[0].createHttpServer(new HttpServerOptions().setPort(0).setHost("localhost"));
     server1.requestHandler(router1::accept);
     CountDownLatch latch1 = new CountDownLatch(1);
     server1.listen(onSuccess(s -> latch1.countDown()));
@@ -75,7 +75,7 @@ public class ClusteredSessionHandlerTest extends SessionHandlerTestBase {
     router2.route().handler(CookieHandler.create());
     SessionStore store2 = ClusteredSessionStore.create(vertices[1]);
     router2.route().handler(SessionHandler.create(store2));
-    HttpServer server2 = vertices[1].createHttpServer(new HttpServerOptions().setPort(8082).setHost("localhost"));
+    HttpServer server2 = vertices[1].createHttpServer(new HttpServerOptions().setPort(0).setHost("localhost"));
     server2.requestHandler(router2::accept);
     CountDownLatch latch2 = new CountDownLatch(1);
     server2.listen(onSuccess(s -> latch2.countDown()));
@@ -85,7 +85,7 @@ public class ClusteredSessionHandlerTest extends SessionHandlerTestBase {
     router3.route().handler(CookieHandler.create());
     SessionStore store3 = ClusteredSessionStore.create(vertices[2]);
     router3.route().handler(SessionHandler.create(store3));
-    HttpServer server3 = vertices[2].createHttpServer(new HttpServerOptions().setPort(8083).setHost("localhost"));
+    HttpServer server3 = vertices[2].createHttpServer(new HttpServerOptions().setPort(0).setHost("localhost"));
     server3.requestHandler(router3::accept);
     CountDownLatch latch3 = new CountDownLatch(1);
     server3.listen(onSuccess(s -> latch3.countDown()));
@@ -115,7 +115,7 @@ public class ClusteredSessionHandlerTest extends SessionHandlerTestBase {
     });
 
     AtomicReference<String> rSetCookie = new AtomicReference<>();
-    testRequestBuffer(client1, HttpMethod.GET, 8081, "/", null, resp -> {
+    testRequestBuffer(client1, HttpMethod.GET, server1.actualPort(), "/", null, resp -> {
       String setCookie = resp.headers().get("set-cookie");
       rSetCookie.set(setCookie);
     }, 200, "OK", null);
@@ -123,11 +123,11 @@ public class ClusteredSessionHandlerTest extends SessionHandlerTestBase {
     // the next request hits the server
     // https://github.com/vert-x3/vertx-web/issues/93
     Thread.sleep(1000);
-    testRequestBuffer(client2, HttpMethod.GET, 8082, "/", req -> {
+    testRequestBuffer(client2, HttpMethod.GET, server2.actualPort(), "/", req -> {
       req.putHeader("cookie", rSetCookie.get());
     }, null, 200, "OK", null);
     Thread.sleep(1000);
-    testRequestBuffer(client3, HttpMethod.GET, 8083, "/", req -> {
+    testRequestBuffer(client3, HttpMethod.GET, server3.actualPort(), "/", req -> {
       req.putHeader("cookie", rSetCookie.get());
     }, null, 200, "OK", null);
 
